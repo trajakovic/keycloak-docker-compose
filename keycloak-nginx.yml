@@ -1,0 +1,19 @@
+version: '2'
+services:
+  keycloak-nginx:
+    container_name: keycloak-nginx
+    build: keycloak-nginx
+    external_links:
+        - keycloak-server:keycloak
+    volumes:
+        - ./keycloak-nginx/conf.d:/etc/nginx/conf.d:ro
+        - ./keycloak-nginx/certs:/etc/nginx/certs:ro
+        - ./keycloak-nginx/logs:/var/log/nginx
+    ports:
+        - "80:80"
+        - "443:443"
+    restart: unless-stopped
+  keycloak-server:
+    extends:
+      file: keycloak-server.yml
+      service: keycloak-server

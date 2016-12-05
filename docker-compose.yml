@@ -1,0 +1,26 @@
+version: '2'
+services:
+    keycloak-server:
+      extends:
+        file: keycloak-server.yml
+        service: keycloak-server
+      links:
+        - keycloak-mailcatcher:mailcatcher
+      external_links:
+        - keycloak-postgresql:postgresql
+      volumes:
+        - ./keycloak-server:/keycloak-server
+    keycloak-postgresql:
+      extends:
+        file: keycloak-postgres.yml
+        service: keycloak-postgresql
+    keycloak-nginx:
+      extends:
+        file: keycloak-nginx.yml
+        service: keycloak-nginx
+      external_links:
+        - keycloak-server:keycloak
+    keycloak-mailcatcher:
+      image: schickling/mailcatcher
+      ports:
+        - 1080:1080

@@ -1,0 +1,24 @@
+version: '2'
+services:
+    keycloak-server:
+        container_name: keycloak-server
+        image: jboss/keycloak-postgres:2.4.0.Final
+        external_links:
+            - keycloak-postgresql:postgres
+        environment:
+            - POSTGRES_DATABASE=keycloak
+            - POSTGRES_USER=keycloak
+            - POSTGRES_PASSWORD=password
+            #jboss is using legacy linking environment variables
+            - POSTGRES_PORT_5432_TCP_ADDR=postgres
+            - POSTGRES_PORT_5432_TCP_PORT=5432
+        ports:
+            - 10090:8080
+        volumes:
+            - ./keycloak-server/config-2.4/standalone.xml:/opt/jboss/keycloak/standalone/configuration/standalone.xml
+            - ./keycloak-server/user/keycloak-add-user.json:/opt/jboss/keycloak/standalone/configuration/keycloak-add-user.json
+        restart: unless-stopped
+    keycloak-postgresql:
+        extends:
+          file: keycloak-postgres.yml
+          service: keycloak-postgresql

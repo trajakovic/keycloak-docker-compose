@@ -1,0 +1,15 @@
+version: '2'
+services:
+  keycloak-postgresql:
+      container_name: keycloak-postgresql
+      image: postgres:9.5
+      volumes:
+          - ./keycloak-postgres-sql:/docker-entrypoint-initdb.d
+      environment:
+          - POSTGRES_DB=keycloak
+          - POSTGRES_USER=keycloak
+          - POSTGRES_PASSWORD=password
+          - POSTGRES_ROOT_PASSWORD=root_password
+      ports:
+        - 54320:5432
+      restart: unless-stopped
