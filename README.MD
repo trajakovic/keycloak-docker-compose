@@ -36,3 +36,27 @@ This is `docker-compose` setup for [Keycloak](http://www.keycloak.org/) server c
      * This modification tells Keycloak to pull the client’s IP address from the X-Forwarded-For header since it's behind nginx.
    * line 412: ```<host name="default-host" alias="localhost" default-web-module="keycloak-server.war">```
      * This modification deploys Keycloak as default application on root path (context)
+
+
+### Tested on
+ * `cat /etc/os-release`:
+    ```
+       NAME=Fedora
+       VERSION="23 (Twenty Three)"
+       ID=fedora
+       VERSION_ID=23
+       PRETTY_NAME="Fedora 23 (Twenty Three)"
+       ANSI_COLOR="0;34"
+       CPE_NAME="cpe:/o:fedoraproject:fedora:23"
+       HOME_URL="https://fedoraproject.org/"
+       BUG_REPORT_URL="https://bugzilla.redhat.com/"
+       REDHAT_BUGZILLA_PRODUCT="Fedora"
+       REDHAT_BUGZILLA_PRODUCT_VERSION=23
+       REDHAT_SUPPORT_PRODUCT="Fedora"
+       REDHAT_SUPPORT_PRODUCT_VERSION=23
+       PRIVACY_POLICY_URL=https://fedoraproject.org/wiki/Legal:PrivacyPolicy
+    ```
+ * `uname -a`: Linux xxx.XXX 4.8.10-100.fc23.x86_64 #1 SMP Mon Nov 21 20:37:11 UTC 2016 x86_64 x86_64 x86_64 GNU/Linux
+ * `docker --version`: Docker version 1.12.3, build 6b644ec
+ * `docker-compose --version`: docker-compose version 1.8.1, build 878cff1
+

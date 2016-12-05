@@ -2,7 +2,7 @@ version: '2'
 services:
     keycloak-server:
         container_name: keycloak-server
-        image: jboss/keycloak-postgres:2.4.0.Final
+        image: jboss/keycloak-postgres:2.5.0.Final
         external_links:
             - keycloak-postgresql:postgres
         environment:
@@ -15,8 +15,9 @@ services:
         ports:
             - 10090:8080
         volumes:
-            - ./keycloak-server/config-2.4/standalone.xml:/opt/jboss/keycloak/standalone/configuration/standalone.xml
             - ./keycloak-server/user/keycloak-add-user.json:/opt/jboss/keycloak/standalone/configuration/keycloak-add-user.json
+            - ./keycloak-server/cli-scripts:/cli-scripts
+            - ./keycloak-server/drop-ins:/drop-ins
         restart: unless-stopped
     keycloak-postgresql:
         extends:

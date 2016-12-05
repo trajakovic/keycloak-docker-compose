@@ -1,0 +1,1 @@
+/subsystem=keycloak-server/:write-attribute(name=providers,value=["classpath:${jboss.home.dir}/providers/*","module:hr.corvus.cps.keycloak.registration-corvus"])

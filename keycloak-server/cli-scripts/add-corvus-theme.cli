@@ -1,0 +1,1 @@
+/subsystem=keycloak-server/theme=defaults/:write-attribute(name=modules,value=["hr.corvus.cps.keycloak.theme-corvus"])
